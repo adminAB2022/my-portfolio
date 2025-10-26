@@ -1,3 +1,4 @@
+
 name: CI
 
 on:
@@ -15,9 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build image
-        run: docker build -t alix2022/portfolio .
-
+        run: docker build -t ${{secrets.REGISTRY_USER}}/portfolio .
       - name: push image
         run: |
-              docker login -u alix2022 -p ${{secrets.REGISTRY_PASS}}
-              docker push alix2022/portfolio
+              docker login -u ${{secrets.REGISTRY_USER}} -p ${{secrets.REGISTRY_PASS}}
+              docker push ${{secrets.REGISTRY_USER}}/portfolio
